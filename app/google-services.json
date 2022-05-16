@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "832676527512",
+    "project_id": "catalogcar-857fb",
+    "storage_bucket": "catalogcar-857fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832676527512:android:d23205181c8cedd7afbfed",
+        "android_client_info": {
+          "package_name": "br.com.fiap.catalogcar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832676527512-s5o2vq0uf871orpboj481rmbfd0j4a3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9nWG_FWuIZhO8TSTeonKQaZ8KYAvirnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832676527512-s5o2vq0uf871orpboj481rmbfd0j4a3v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

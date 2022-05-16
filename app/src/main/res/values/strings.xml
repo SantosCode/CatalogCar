@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name" translatable="false">CatalogCar</string>
+    <string name="io_exeption" translatable="false">\"Couldn\'t reach server. Check your internet connection\"</string>
+    <string name="car_info" translatable="false">Car Info: </string>
+    <string name="model_car" translatable="false">Model: </string>
+    <string name="manufacture" translatable="false">Manufacture: </string>
+    <string name="year" translatable="false">Year:</string>
+    <string name="model" translatable="false">Model</string>
+    <string name="add" translatable="false">ADD</string>
+    <string name="login" translatable="false">Login Catalog Car</string>
+    <string name="list_car" translatable="false">List of Cars</string>
+    <string name="add_car" translatable="false">Add Car</string>
+</resources>

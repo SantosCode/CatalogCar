@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CatalogCar</string>
+    <string name="io_exeption" translatable="false">Cheque sua conexão de internet</string>
+    <string name="model_car" translatable="false">Modelo:</string>
+    <string name="manufacture" translatable="false">Fabricante:</string>
+    <string name="year" translatable="false">"Ano: "</string>
+    <string name="model" translatable="false">Modelo</string>
+    <string name="add" translatable="false">ADICIONAR</string>
+    <string name="login" translatable="false">Login Catalog Car</string>
+    <string name="list_car" translatable="false">Lista de Carros</string>
+    <string name="add_car" translatable="false">Adicionar Carro</string>
+</resources>
