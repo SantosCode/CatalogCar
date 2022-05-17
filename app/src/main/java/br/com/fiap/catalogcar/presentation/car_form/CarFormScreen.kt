@@ -6,9 +6,11 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -27,13 +29,14 @@ fun CarFormScreen(
 
     val snackbarHostState = remember { SnackbarHostState() }
     val state = viewModel.state.value
+    val maxChar = 4
 
     Scaffold(
         scaffoldState = rememberScaffoldState(snackbarHostState = snackbarHostState),
         topBar = {
             Column(modifier = Modifier.fillMaxWidth()) {
                 CarTopBar(title = stringResource(id = R.string.add_car),
-                    onClick = {navHostController.navigate("carList")},
+                    onClick = { navHostController.navigate("carList") },
                     isVisibleNav = true)
                 if (state.isLoading) {
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
@@ -52,10 +55,11 @@ fun CarFormScreen(
                         modifier = Modifier.fillMaxWidth(),
                         value = model,
                         keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Text
+                            keyboardType = KeyboardType.Text,
+                            autoCorrect = true
                         ),
                         label = {
-                            Text(text = stringResource(id = R.string.model))
+                            Text(text = stringResource(id = R.string.model_car))
                         },
                         onValueChange = {
                             model = it
@@ -66,7 +70,8 @@ fun CarFormScreen(
                         modifier = Modifier.fillMaxWidth(),
                         value = manufacture,
                         keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Text
+                            keyboardType = KeyboardType.Text,
+                            autoCorrect = true
                         ),
                         label = {
                             Text(text = stringResource(id = R.string.manufacture))
@@ -86,7 +91,7 @@ fun CarFormScreen(
                             Text(text = stringResource(id = R.string.year))
                         },
                         onValueChange = {
-                            year = it
+                            year = manageLength(it)
                         }
                     )
 
@@ -97,6 +102,9 @@ fun CarFormScreen(
                         content = {
                             Text(text = stringResource(id = R.string.add))
                         },
+                        enabled = model.isNotEmpty()
+                            .and(manufacture.isNotEmpty())
+                            .and(year.isNotEmpty()),
                         onClick = {
                             viewModel.addCar(model, manufacture, year.toInt(), navHostController)
                         }
@@ -107,3 +115,5 @@ fun CarFormScreen(
         }
     )
 }
+
+private fun manageLength(input: String) = if (input.length > 4) input.substring(0..3) else input

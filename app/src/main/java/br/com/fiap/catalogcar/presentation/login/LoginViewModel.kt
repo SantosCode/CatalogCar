@@ -5,11 +5,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import br.com.fiap.catalogcar.data.local.datasource.StoreUser
 import br.com.fiap.catalogcar.domain.use_case.GetAuthLoginUseCase
 import br.com.fiap.catalogcar.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel

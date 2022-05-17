@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import br.com.fiap.catalogcar.domain.use_case.DelCarUseCase
-import br.com.fiap.catalogcar.domain.use_case.GetCarUseCase
+import br.com.fiap.catalogcar.domain.use_case.GetAllCarsUseCase
 import br.com.fiap.catalogcar.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CarListViewModel @Inject constructor(
-    private val getCarUseCase: GetCarUseCase,
+    private val getAllCarsUseCase: GetAllCarsUseCase,
     private val delCarUseCase: DelCarUseCase,
 ) : ViewModel() {
     private val _state = mutableStateOf(CarListState())
@@ -26,7 +26,7 @@ class CarListViewModel @Inject constructor(
     }
 
     private fun getCar() {
-        getCarUseCase().onEach { result ->
+        getAllCarsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> _state.value =
                     CarListState(cars = result.data ?: emptyList())

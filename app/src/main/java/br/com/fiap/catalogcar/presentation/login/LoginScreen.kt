@@ -31,9 +31,6 @@ fun LoginScreen(
         topBar = {
             Column(modifier = Modifier.fillMaxWidth()) {
                 CarTopBar(title = stringResource(id = R.string.login))
-                if (state.isLoading) {
-                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-                }
             }
         },
         content = {
@@ -47,6 +44,7 @@ fun LoginScreen(
                     OutlinedTextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = userEmail,
+                        isError = state.error.isNotBlank(),
                         label = {
                             Text(text = "User")
                         },
@@ -59,6 +57,7 @@ fun LoginScreen(
                         modifier = Modifier.fillMaxWidth(),
                         visualTransformation = PasswordVisualTransformation(),
                         value = userPassword,
+                        isError = state.error.isNotBlank(),
                         label = {
                             Text(text = "Password")
                         },
@@ -71,7 +70,7 @@ fun LoginScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp),
-                        enabled = userEmail.isNotEmpty() && userPassword.isNotEmpty(),
+                        enabled = userEmail.isNotEmpty().and(userPassword.isNotEmpty()),
                         content = {
                             Text(text = "Login")
                         },
