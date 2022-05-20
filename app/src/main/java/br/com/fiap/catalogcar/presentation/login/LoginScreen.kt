@@ -30,7 +30,7 @@ fun LoginScreen(
         scaffoldState = rememberScaffoldState(snackbarHostState = snackbarHostState),
         topBar = {
             Column(modifier = Modifier.fillMaxWidth()) {
-                CarTopBar(title = stringResource(id = R.string.login))
+                CarTopBar(title = stringResource(id = R.string.login_title))
             }
         },
         content = {
@@ -46,7 +46,7 @@ fun LoginScreen(
                         value = userEmail,
                         isError = state.error.isNotBlank(),
                         label = {
-                            Text(text = "User")
+                            Text(text = stringResource(id = R.string.user))
                         },
                         onValueChange = {
                             userEmail = it
@@ -59,7 +59,7 @@ fun LoginScreen(
                         value = userPassword,
                         isError = state.error.isNotBlank(),
                         label = {
-                            Text(text = "Password")
+                            Text(text = stringResource(id = R.string.password))
                         },
                         onValueChange = {
                             userPassword = it
@@ -72,7 +72,7 @@ fun LoginScreen(
                             .height(50.dp),
                         enabled = userEmail.isNotEmpty().and(userPassword.isNotEmpty()),
                         content = {
-                            Text(text = "Login")
+                            Text(text = stringResource(id = R.string.login))
                         },
                         onClick = {
                             viewModel.login(userEmail, userPassword, navHostController)

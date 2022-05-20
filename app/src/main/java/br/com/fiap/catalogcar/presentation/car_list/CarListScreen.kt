@@ -21,6 +21,7 @@ import br.com.fiap.catalogcar.R
 import br.com.fiap.catalogcar.presentation.car_form.components.AddCarFloatingButton
 import br.com.fiap.catalogcar.presentation.car_list.components.CarItem
 import br.com.fiap.catalogcar.presentation.components.CarTopBar
+import br.com.fiap.catalogcar.utils.Constants
 
 @Composable
 fun CarListScreen(
@@ -30,7 +31,7 @@ fun CarListScreen(
     val state = viewModel.state.value
     Scaffold(
         topBar = { CarTopBar(title = stringResource(id = R.string.list_car),
-            onClick = {navHostController.navigate("login")},
+            onClick = {navHostController.navigate(Constants.LOGIN_VIEW)},
             isVisibleNav = true)},
         floatingActionButton = {
            AddCarFloatingButton(navHostController = navHostController)

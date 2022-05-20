@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import br.com.fiap.catalogcar.data.local.datasource.StoreUser
 import br.com.fiap.catalogcar.domain.use_case.GetAuthLoginUseCase
+import br.com.fiap.catalogcar.utils.Constants
 import br.com.fiap.catalogcar.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.filter
@@ -30,7 +31,7 @@ class LoginViewModel @Inject constructor(
                 is Resource.Success -> {
                     _state.value =
                         LoginState(auth = result.data)
-                    navController.navigate("carList")
+                    navController.navigate(Constants.CAR_LIST_VIEW)
                 }
                 is Resource.Error -> _state.value =
                     LoginState(error = result.message ?: "An unexpected error occurred")

@@ -7,7 +7,10 @@
     <string name="year" translatable="false">Year:</string>
     <string name="model" translatable="false">Model</string>
     <string name="add" translatable="false">ADD</string>
-    <string name="login" translatable="false">Login Catalog Car</string>
+    <string name="login_title" translatable="false">Login Catalog Car</string>
     <string name="list_car" translatable="false">List of Cars</string>
     <string name="add_car" translatable="false">Add Car</string>
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>

@@ -16,6 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import br.com.fiap.catalogcar.R
 import br.com.fiap.catalogcar.presentation.components.CarTopBar
+import br.com.fiap.catalogcar.utils.Constants
 
 @Composable
 fun CarFormScreen(
@@ -36,7 +37,7 @@ fun CarFormScreen(
         topBar = {
             Column(modifier = Modifier.fillMaxWidth()) {
                 CarTopBar(title = stringResource(id = R.string.add_car),
-                    onClick = { navHostController.navigate("carList") },
+                    onClick = { navHostController.navigate(Constants.CAR_LIST_VIEW) },
                     isVisibleNav = true)
                 if (state.isLoading) {
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth())

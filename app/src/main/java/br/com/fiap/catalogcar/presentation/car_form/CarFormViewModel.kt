@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import br.com.fiap.catalogcar.data.remote.dto.CarDto
 import br.com.fiap.catalogcar.domain.use_case.AddCarUseCase
 import br.com.fiap.catalogcar.presentation.car_list.CarListState
+import br.com.fiap.catalogcar.utils.Constants
 import br.com.fiap.catalogcar.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -38,7 +39,7 @@ class CarFormViewMode @Inject constructor(
                 is Resource.Success -> {
                     _state.value =
                         CarListState(car = result.data)
-                    navController.navigate("carList")
+                    navController.navigate(Constants.CAR_LIST_VIEW)
                 }
                 is Resource.Error -> _state.value =
                     CarListState(error = result.message ?:  "An unexpected error occurred")
