@@ -11,13 +11,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import br.com.fiap.catalogcar.R
 import br.com.fiap.catalogcar.presentation.components.CarTopBar
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.runBlocking
 
-@DelicateCoroutinesApi
+
 @Composable
 fun CarFormScreen(
     viewModel: CarFormViewMode = hiltViewModel(),
@@ -33,11 +30,8 @@ fun CarFormScreen(
     val snackbarHostState = remember { SnackbarHostState() }
 
     id?.let {
-        runBlocking {
-            val job = viewModel.editCar(it)
-            if (state.car != null) {
-                job.cancel()
-            }
+        LaunchedEffect(Unit ) {
+            viewModel.editCar(it)
         }
     }
 

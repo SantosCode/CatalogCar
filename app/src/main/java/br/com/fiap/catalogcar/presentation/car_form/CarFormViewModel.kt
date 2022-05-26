@@ -50,9 +50,7 @@ class CarFormViewMode @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    @DelicateCoroutinesApi
-    suspend fun editCar(id: Long) =
-        withContext(Dispatchers.IO) {
+    fun editCar(id: Long)  {
             getCarUseCase(id).onEach { result ->
                 when (result) {
                     is Resource.Success -> _state.value =

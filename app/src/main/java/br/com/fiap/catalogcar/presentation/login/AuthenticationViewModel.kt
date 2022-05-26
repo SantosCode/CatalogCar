@@ -16,17 +16,13 @@ class AuthenticationViewModel @Inject constructor(
 
     fun verifyLoggedIn(
         navigateLogin: () -> Unit,
-        navigateCarList: () -> Unit
+        navigateCarList: () -> Unit,
     ) {
         storeUser.getAuth.onEach { result ->
             if (result.isNotEmpty()) {
-                navigateCarList().also {
-                    viewModelScope.cancel()
-                }
+                navigateCarList()
             } else {
-                navigateLogin().also {
-                    viewModelScope.cancel()
-                }
+                navigateLogin()
             }
         }.launchIn(viewModelScope)
     }
