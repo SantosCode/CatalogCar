@@ -1,6 +1,7 @@
 package br.com.fiap.catalogcar.presentation.car_list.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,6 +29,7 @@ fun CarItem(
     onClickEdit: () -> Unit = {},
 ) {
     Card(modifier = Modifier
+        .clickable(onClick = onClickEdit)
         .fillMaxWidth()
         .padding(top = 8.dp, bottom = 16.dp, start = 4.dp, end = 4.dp),
         elevation = 8.dp,
@@ -79,14 +81,6 @@ fun CarItem(
                 Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                FloatingActionButton(onClick = onClickEdit,
-                    backgroundColor = MaterialTheme.colors.primaryVariant,
-                    modifier = Modifier.size(40.dp)) {
-                    Icon(
-                        imageVector = Icons.Default.Edit,
-                        contentDescription = "")
-                }
-                Spacer(modifier = Modifier.size(15.dp))
                 FloatingActionButton(onClick = onclickDelete,
                     backgroundColor = MaterialTheme.colors.error,
                     modifier = Modifier.size(40.dp)) {
