@@ -13,6 +13,9 @@ interface CarApi {
     @GET("/cars")
     suspend fun getCars(@Header("Authorization") auth: String): List<CarDto>
 
+    @GET("/cars/{id}")
+    suspend fun getCar(@Header("Authorization") auth: String, @Path("id") id: Long): CarDto
+
     @POST("/cars")
     suspend fun addCar(@Header("Authorization") auth: String, @Body car: CarDto)
 

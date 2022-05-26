@@ -20,8 +20,8 @@ class GetAllCarsUseCase @Inject constructor(
             emit(Resource.Loading<List<Car>>())
             val auth = storeUser.getAuth.first()
             if (auth.isNotEmpty()) {
-                val coins = repository.getCars(auth).map { it.toCar() }
-                emit(Resource.Success<List<Car>>(coins))
+                val response = repository.getCars(auth).map { it.toCar() }
+                emit(Resource.Success<List<Car>>(response))
             } else {
                 emit(Resource.Error<List<Car>>("Login Failed"))
             }

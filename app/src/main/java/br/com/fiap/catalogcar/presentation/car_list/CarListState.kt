@@ -6,6 +6,6 @@ import br.com.fiap.catalogcar.domain.model.Car
 data class CarListState(
     val isLoading: Boolean = false,
     val cars: List<Car> = emptyList(),
-    val car: CarDto? = null,
+    var car: CarDto? = null,
     val error: String = ""
 )

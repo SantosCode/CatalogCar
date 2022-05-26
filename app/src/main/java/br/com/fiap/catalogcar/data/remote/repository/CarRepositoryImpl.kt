@@ -19,6 +19,9 @@ class CarRepositoryImpl @Inject constructor(
         return api.getCars(auth)
     }
 
+    override suspend fun getCar(auth: String, id: Long): CarDto {
+        return api.getCar(auth, id)
+    }
     override suspend fun addCar(auth: String, car: CarDto) {
         return api.addCar(auth = auth, car = car)
     }

@@ -10,6 +10,8 @@ interface CarRepository {
 
     suspend fun getCars(auth: String): List<CarDto>
 
+    suspend fun getCar(auth: String, id: Long): CarDto
+
     suspend fun addCar(auth: String, car: CarDto)
 
     suspend fun delCar(auth: String, id: Long)

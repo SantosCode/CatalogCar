@@ -7,9 +7,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import br.com.fiap.catalogcar.domain.use_case.DelCarUseCase
 import br.com.fiap.catalogcar.domain.use_case.GetAllCarsUseCase
-import br.com.fiap.catalogcar.utils.Constants
+import br.com.fiap.catalogcar.utils.ConstantsDestination
 import br.com.fiap.catalogcar.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -26,7 +27,7 @@ class CarListViewModel @Inject constructor(
         getCar()
     }
 
-    private fun getCar() {
+     fun getCar() {
         getAllCarsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> _state.value =
@@ -41,11 +42,10 @@ class CarListViewModel @Inject constructor(
 
     fun deleteCar(
         id: Long,
-        navHostController: NavHostController,
     ) {
         delCarUseCase(id).onEach { result ->
             when (result) {
-                is Resource.Success -> navHostController.navigate(Constants.CAR_LIST_VIEW)
+                is Resource.Success -> viewModelScope.cancel()
                 is Resource.Error -> _state.value =
                     CarListState(error = result.message ?: "An unexpected error occurred")
                 is Resource.Loading -> _state.value =

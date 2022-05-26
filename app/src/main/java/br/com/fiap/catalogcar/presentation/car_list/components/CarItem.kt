@@ -2,9 +2,12 @@ package br.com.fiap.catalogcar.presentation.car_list.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DeleteForever
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,11 +22,16 @@ import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
 
 @Composable
-fun CarItem(car: Car, onclickDelete: () -> Unit = {}) {
+fun CarItem(
+    car: Car,
+    onclickDelete: () -> Unit = {},
+    onClickEdit: () -> Unit = {},
+) {
     Card(modifier = Modifier
         .fillMaxWidth()
-        .padding(top = 4.dp, bottom = 2.dp, start = 2.dp, end = 2.dp),
-        elevation = 8.dp
+        .padding(top = 8.dp, bottom = 16.dp, start = 4.dp, end = 4.dp),
+        elevation = 8.dp,
+        shape = RoundedCornerShape(corner = CornerSize(16.dp))
     ) {
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -71,6 +79,14 @@ fun CarItem(car: Car, onclickDelete: () -> Unit = {}) {
                 Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                FloatingActionButton(onClick = onClickEdit,
+                    backgroundColor = MaterialTheme.colors.primaryVariant,
+                    modifier = Modifier.size(40.dp)) {
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "")
+                }
+                Spacer(modifier = Modifier.size(15.dp))
                 FloatingActionButton(onClick = onclickDelete,
                     backgroundColor = MaterialTheme.colors.error,
                     modifier = Modifier.size(40.dp)) {

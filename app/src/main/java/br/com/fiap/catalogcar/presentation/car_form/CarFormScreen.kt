@@ -6,38 +6,53 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import br.com.fiap.catalogcar.R
 import br.com.fiap.catalogcar.presentation.components.CarTopBar
-import br.com.fiap.catalogcar.utils.Constants
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.runBlocking
 
+@DelicateCoroutinesApi
 @Composable
 fun CarFormScreen(
     viewModel: CarFormViewMode = hiltViewModel(),
-    navHostController: NavHostController,
+    navigateToCarList: () -> Unit,
+    id: Long? = null,
 ) {
 
     var model by remember { mutableStateOf("") }
     var manufacture by remember { mutableStateOf("") }
     var year by remember { mutableStateOf("") }
 
-    val snackbarHostState = remember { SnackbarHostState() }
     val state = viewModel.state.value
-    val maxChar = 4
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    id?.let {
+        runBlocking {
+            val job = viewModel.editCar(it)
+            if (state.car != null) {
+                job.cancel()
+            }
+        }
+    }
+
+    state.car?.let { carDto ->
+        model = carDto.model
+        manufacture = carDto.manufacture
+        year = carDto.year.toString()
+    }
 
     Scaffold(
         scaffoldState = rememberScaffoldState(snackbarHostState = snackbarHostState),
         topBar = {
             Column(modifier = Modifier.fillMaxWidth()) {
                 CarTopBar(title = stringResource(id = R.string.add_car),
-                    onClick = { navHostController.navigate(Constants.CAR_LIST_VIEW) },
+                    onClick = navigateToCarList,
                     isVisibleNav = true)
                 if (state.isLoading) {
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
@@ -107,7 +122,13 @@ fun CarFormScreen(
                             .and(manufacture.isNotEmpty())
                             .and(year.isNotEmpty()),
                         onClick = {
-                            viewModel.addCar(model, manufacture, year.toInt(), navHostController)
+                            viewModel.addCar(
+                                state.car?.id,
+                                model,
+                                manufacture,
+                                year.toInt()
+                            )
+                            navigateToCarList()
                         }
                     )
                     Text(text = state.error, color = Color.Red)

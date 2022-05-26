@@ -4,6 +4,7 @@ import br.com.fiap.catalogcar.data.remote.dto.AuthDto
 
 data class LoginState(
     val isLoading: Boolean = false,
+    val token: String? = "",
     val auth: AuthDto? = null,
     val error: String = ""
 )

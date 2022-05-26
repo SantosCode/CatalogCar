@@ -1,6 +1,9 @@
 package br.com.fiap.catalogcar.di
 
 import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import br.com.fiap.catalogcar.BuildConfig
 import br.com.fiap.catalogcar.data.local.datasource.StoreUser
 import br.com.fiap.catalogcar.data.remote.CarApi
