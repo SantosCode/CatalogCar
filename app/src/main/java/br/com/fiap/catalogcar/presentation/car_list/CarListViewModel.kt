@@ -4,10 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavHostController
 import br.com.fiap.catalogcar.domain.use_case.DelCarUseCase
 import br.com.fiap.catalogcar.domain.use_case.GetAllCarsUseCase
-import br.com.fiap.catalogcar.utils.ConstantsDestination
 import br.com.fiap.catalogcar.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel

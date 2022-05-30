@@ -13,7 +13,6 @@ import br.com.fiap.catalogcar.presentation.car_list.CarListScreen
 import br.com.fiap.catalogcar.presentation.login.LoginScreen
 import br.com.fiap.catalogcar.presentation.login.components.Authentication
 import br.com.fiap.catalogcar.route.NavRoute
-import br.com.fiap.catalogcar.utils.ConstantsDestination
 
 @ExperimentalComposeApi
 @Composable

@@ -1,7 +1,11 @@
 package br.com.fiap.catalogcar.presentation.car_form
 
+import androidx.compose.foundation.gestures.rememberScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -28,6 +32,7 @@ fun CarFormScreen(
 
     val state = viewModel.state.value
     val snackbarHostState = remember { SnackbarHostState() }
+    val scrollState = rememberScrollState()
 
     id?.let {
         LaunchedEffect(Unit ) {
@@ -44,7 +49,9 @@ fun CarFormScreen(
     Scaffold(
         scaffoldState = rememberScaffoldState(snackbarHostState = snackbarHostState),
         topBar = {
-            Column(modifier = Modifier.fillMaxWidth()) {
+            Column(modifier = Modifier
+                .fillMaxWidth()
+            ) {
                 CarTopBar(title = stringResource(id = R.string.add_car),
                     onClick = navigateToCarList,
                     isVisibleNav = true)
@@ -57,7 +64,8 @@ fun CarFormScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(24.dp),
+                    .padding(24.dp)
+                    .verticalScroll(scrollState),
                 verticalArrangement = Arrangement.spacedBy(18.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 content = {
