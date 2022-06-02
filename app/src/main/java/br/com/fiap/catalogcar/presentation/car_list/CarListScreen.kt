@@ -42,6 +42,7 @@ fun CarListScreen(
         topBar = {
             CarTopBar(title = stringResource(id = R.string.list_car),
                 onClick = navigateToLogin,
+                navigateToLogin = navigateToLogin,
                 isVisibleNav = false)
         },
         floatingActionButton = {

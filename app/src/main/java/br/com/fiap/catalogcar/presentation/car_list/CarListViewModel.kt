@@ -20,11 +20,7 @@ class CarListViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = mutableStateOf(CarListState())
     val state: State<CarListState> = _state
-
-    init {
-        getCar()
-    }
-
+    
      fun getCar() {
         getAllCarsUseCase().onEach { result ->
             when (result) {

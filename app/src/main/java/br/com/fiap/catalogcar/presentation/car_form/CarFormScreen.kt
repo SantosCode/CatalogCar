@@ -1,7 +1,5 @@
 package br.com.fiap.catalogcar.presentation.car_form
 
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -23,6 +21,7 @@ import br.com.fiap.catalogcar.presentation.components.CarTopBar
 fun CarFormScreen(
     viewModel: CarFormViewMode = hiltViewModel(),
     navigateToCarList: () -> Unit,
+    navigateToLogin: () -> Unit,
     id: Long? = null,
 ) {
 
@@ -35,7 +34,7 @@ fun CarFormScreen(
     val scrollState = rememberScrollState()
 
     id?.let {
-        LaunchedEffect(Unit ) {
+        LaunchedEffect(Unit) {
             viewModel.editCar(it)
         }
     }
@@ -54,6 +53,7 @@ fun CarFormScreen(
             ) {
                 CarTopBar(title = stringResource(id = R.string.add_car),
                     onClick = navigateToCarList,
+                    navigateToLogin = navigateToLogin,
                     isVisibleNav = true)
                 if (state.isLoading) {
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
@@ -114,6 +114,9 @@ fun CarFormScreen(
                     )
 
                     Button(
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = MaterialTheme.colors.primaryVariant
+                        ),
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp),

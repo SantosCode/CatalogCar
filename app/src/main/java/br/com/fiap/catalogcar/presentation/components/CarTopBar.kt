@@ -15,9 +15,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CarTopBar(title: String, onClick: () -> Unit = {}, isVisibleNav: Boolean = false) {
+fun CarTopBar(
+    title: String, onClick: () -> Unit = {},
+    navigateToLogin: () -> Unit = {},
+    isVisibleNav: Boolean = false,
+) {
 
-    val activity = (LocalContext.current as? Activity)
     val colorBackground = if (isSystemInDarkTheme()) Color.Black
     else Color.White
 
@@ -38,7 +41,7 @@ fun CarTopBar(title: String, onClick: () -> Unit = {}, isVisibleNav: Boolean = f
             }
         },
         actions = {
-            IconButton(onClick = { activity?.finish() }) {
+            IconButton(onClick = navigateToLogin) {
                 Icon(
                     imageVector = Icons.Rounded.ExitToApp,
                     contentDescription = null,

@@ -57,9 +57,14 @@ private fun addCarFormScreen(
     navGraphBuilder: NavGraphBuilder,
 ) {
     navGraphBuilder.composable(NavRoute.CarForm.path) {
-        CarFormScreen(navigateToCarList = {
-            navController.navigate(NavRoute.CarList.path)
-        })
+        CarFormScreen(
+            navigateToCarList = {
+                navController.navigate(NavRoute.CarList.path)
+            },
+            navigateToLogin = {
+                navController.navigate(NavRoute.Login.path)
+            }
+        )
     }
 }
 
@@ -78,7 +83,12 @@ private fun addEditCarScreen(
         val args = navBackStackEntry.arguments
         CarFormScreen(
             id = args?.getLong(NavRoute.CarFormEdit.id),
-            navigateToCarList = { navController.navigate(NavRoute.CarList.path) }
+            navigateToCarList = {
+                navController.navigate(NavRoute.CarList.path)
+            },
+            navigateToLogin = {
+                navController.navigate(NavRoute.Login.path)
+            }
         )
     }
 }
