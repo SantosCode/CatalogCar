@@ -25,11 +25,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'API_BASE_URL', "\"http://nfsconsultoria.com.br:8080\""
+            buildConfigField 'String', 'API_BASE_URL', "\"http://node8816-env-4579727.sp.skdrive.net:11010\""
         }
         debug {
             initWith debug
-            buildConfigField 'String', 'API_BASE_URL', "\"http://nfsconsultoria.com.br:8080\""
+            buildConfigField 'String', 'API_BASE_URL', "\"http://node8816-env-4579727.sp.skdrive.net:11010\""
         }
     }
     compileOptions {
